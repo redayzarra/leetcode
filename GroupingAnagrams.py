@@ -1,25 +1,41 @@
-str = ["ate", "rat", "tea", "car", "tar", "art"]
-output = {}
-indices = []
-all_anagrams1 = []
-all_anagrams = []
-diff_anagrams = []
+# Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+class Solution:
+    def groupAnagrams(self, strs):
 
-# for words in str:
-#     all_anagrams1.append(sorted(words))
-    
-# for element in all_anagrams1:
-#     my_lst_str = ''.join(map(str, element))
-#     print(my_lst_str)
+# Solution #1
+      """
+      We are using a default dictionary because there is an edge case where the 
+      first element of count[0] does not exist, so we want our dictionary to just
+      add it in there. This dictionary is storing the character count of anagrams.
+      """
+      hashmap = defaultdict(list) 
+      
+      """
+      Assign count to an array with 26 zeroes, for storing the alphabet.
+      """
+      for word in strs: # Iterate through every string in the given list.
+        count = [0] * 26 # Reset to all zeroes on every loop
+        
+        for letter in word: # Iterate through every letter in the word 
+          """
+          Use the ordinal value of letter minus the ordinal value of a. This 
+          means that "a" will be assigned to index zero, b to one, etc. Then 
+          increase where the letter is in list count, by one every time. 
+          """
+          count[ord(letter) - ord("a")] += 1 #Increment by one for every letter
+        hashmap[tuple(count)].append(word)
+          
+      list: hashmap.values()
 
-# diff_anagrams = set(all_anagrams)
+# Solution #2
+      hashmap = defaultdict(list) #Create a Default Dictionary 
 
-# for type in diff_anagrams:
-#     for index, anagram in enumerate(all_anagrams):
-#         if anagram == type:
-#             indices.append(index)
-#     output.append(all_anagrams[indices])
-#     indices = []
-# print(output)
+      for word in strs: #Iterate through every word in the given strings
+        sorted_word = sorted(word) #Sort every word so ate is aet
+        """
+        Hashmap with the given key of sorted_word (which is made up of 1 and 0's)
+        add the individual word in there. Do this for every loop.
+        """
+        hashmap[tuple(sorted_word)].append(word)
 
-print(ord("9"))
+      return hashmap.values() # Return the values from the Default Dictionary
