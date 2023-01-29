@@ -1,15 +1,10 @@
-str = ["ate", "rat", "tea", "car", "tar", "art"]
+words = ["This", "is", "an", "example", "of", "text", "justification."]
+cur = []
 
-# for word in str: #Iterate through every word listed in the list str
-#   count = [0] * 26 #Creates and resets the value of count back to an array of 26 zeroes
+for w in words:
+  cur += [w]
 
-#   for letter in word:
-#     count[ord(letter) - ord("a")] += 1
-print(str[3])
+cur[0] = " "
+print(cur)
 
-count = [0] * 26
-
-for i in range(5):
-  count[0] += 1
-
-print(count)
+print(16 % 32)
